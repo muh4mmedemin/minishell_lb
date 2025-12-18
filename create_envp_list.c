@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "create_envp_list.h"
+#include <create_envp_list.h>
 
 static void	take_value(t_envp_list **list, char **envp)
 {
@@ -67,16 +67,3 @@ t_envp_list	*create_envp_list(char **envp)
 	take_value(&envp_list, envp);
 	return (envp_list);
 }
-
-/*
-int main(int argc, char *argv[], char **envp)
-{
-	(void)argc;
-	(void)argv;
-	t_envp_list *list = create_envp_list(envp);
-	while(list->next != NULL)
-	{
-		printf("%s=%s\n", list->id_name, list->value);
-		list = list->next;
-	}
-}*/
