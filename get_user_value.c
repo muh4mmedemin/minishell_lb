@@ -12,6 +12,11 @@
 
 #include <minishell_lb.h>
 
+#define COLOR_WHITE "\033[1;37m"
+#define COLOR_BLUE "\033[1;34m"
+#define COLOR_GREEN "\033[1;32m"
+#define COLOR_PURPLE "\033[1;35m"
+
 char *get_user_name(t_envp_list **list)
 {
     char *user_name;

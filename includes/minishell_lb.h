@@ -13,11 +13,6 @@
 #ifndef MINISHELL_LB
 # define MINISHELL_LB
 
-#define COLOR_WHITE "\033[1;37m"
-#define COLOR_BLUE "\033[1;34m"
-#define COLOR_GREEN "\033[1;32m"
-#define COLOR_PURPLE "\033[1;35m"
-
 #include <libft.h>
 #include <gb.h>
 #include <get_next_line.h>
