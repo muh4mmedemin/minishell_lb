@@ -12,7 +12,7 @@
 
 
 NAME = minishell_lb.a
-SRCS = create_envp_list.c get_user_value.c
+SRCS = create_envp_list.c get_user_value.c string_edit.c
 HSRCS = includes
 
 OBJS = $(SRCS:.c=.o)

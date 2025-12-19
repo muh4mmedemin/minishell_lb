@@ -26,7 +26,6 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
         }
         temp = temp->next;
     }
-    return ;
 }
 
 char	*find_value_on_envp(t_envp_list **list, char *value_id_name)
