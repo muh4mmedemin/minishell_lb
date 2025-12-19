@@ -36,7 +36,6 @@ static char *get_session_name(void)
     char **cmd;
 
     cmd = ft_split("hostname", ' ');
-    pc_name = NULL;
     pipe(pipefd);
     pid = fork();
     if(pid == 0)
@@ -49,10 +48,11 @@ static char *get_session_name(void)
     }
     else
     {
+		wait(NULL);
         free(cmd);
-        close(pipefd[1]);
-        pc_name = get_next_line(pipefd[0]);
+        pc_name = get_next_line(pipefd[1]);
         close(pipefd[0]);
+		close(pipefd[1]);
     }
     return pc_name;
 }
@@ -61,7 +61,7 @@ char *get_pc_name(t_envp_list **list)
 {
     char *pc_name;
 
-    pc_name = find_value_on_envp(list, "HOSTNAME");
+    pc_name = find_value_on_envp(list, "NAME");
     if(pc_name == NULL)
     {
         pc_name = get_session_name();
@@ -87,26 +87,14 @@ char *get_location(void)
 char *rl_header(t_envp_list **list, char **envp)
 {
     char *prompt;
-    char *temp;
 
     prompt = get_user_name(list);
-    temp = prompt;
     prompt = ft_strjoin(prompt, "@");
-    free(temp);
-    temp = prompt;
     prompt = ft_strjoin(prompt, get_pc_name(list));
-    free(temp);
-    temp = prompt;
     prompt = cut_wrong_chracter(prompt);
-    free(temp);
-    temp = prompt;
     prompt = ft_strjoin(prompt, "\033[1;37m:");
-    temp = prompt;
     prompt = ft_strjoin(prompt, get_location());
-    free(temp);
-    temp = prompt;
     prompt = ft_strjoin(prompt, "\033[1;37m$ ");
-    free(temp);
     (void)envp;
     return prompt;
 }
