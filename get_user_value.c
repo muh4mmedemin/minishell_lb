@@ -87,14 +87,27 @@ char *get_location(void)
 char *rl_header(t_envp_list **list, char **envp)
 {
     char *prompt;
+	char *tmp;
+	char *location;
 
     prompt = get_user_name(list);
+	tmp = prompt;
     prompt = ft_strjoin(prompt, "@");
+	free(tmp);
+	tmp = prompt;
     prompt = ft_strjoin(prompt, get_pc_name(list));
-    prompt = cut_wrong_chracter(prompt);
+	free(tmp);
+	tmp = prompt;
     prompt = ft_strjoin(prompt, "\033[1;37m:");
-    prompt = ft_strjoin(prompt, get_location());
+	free(tmp);
+	tmp = prompt;
+	location = get_location();
+    prompt = ft_strjoin(prompt, location);
+	free(location);
+	free(tmp);
+	tmp = prompt;
     prompt = ft_strjoin(prompt, "\033[1;37m$ ");
+	free(tmp);
     (void)envp;
     return prompt;
 }

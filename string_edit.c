@@ -19,7 +19,7 @@ char  *cut_wrong_chracter(const char *s1)
 
     i = 0;
     if (s1 == NULL || !ft_strchr(s1, '\n'))
-        return (char *)s1;
+		return (char *)s1;
     while (s1[i] && (s1[i] != '\n' && s1[i] != '\r'))
         i++;
     new_str = ft_malloc(i + 1, 0);
