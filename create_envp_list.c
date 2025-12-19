@@ -10,7 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <create_envp_list.h>
+#include <minishell_lb.h>
+
+void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
+{
+    t_envp_list *temp;
+
+    temp = (*list);
+    while(temp->next != NULL)
+    {
+        if(!strcmp(temp->id_name, id_name))
+        {
+            free(temp->value);
+            temp->value = ft_strdup(new_value);
+        }
+        temp = temp->next;
+    }
+    return ;
+}
+
+char	*find_value_on_envp(t_envp_list **list, char *value_id_name)
+{
+    t_envp_list *temp;
+
+    temp = (*list);
+    while(temp->next != NULL)
+    {
+        if(!strcmp(temp->id_name, value_id_name))
+            return temp->value; 
+        temp = temp->next;
+    }
+    if(temp == NULL)
+        return NULL;
+    return NULL;
+}
 
 static void	take_value(t_envp_list **list, char **envp)
 {

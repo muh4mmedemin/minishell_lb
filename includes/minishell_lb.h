@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_USER_VALUE_H
-# define GET_USER_VALUE_H
+#ifndef MINISHELL_LB
+# define MINISHELL_LB
 
 #define COLOR_WHITE "\033[1;37m"
 #define COLOR_BLUE "\033[1;34m"
@@ -20,7 +20,6 @@
 
 #include <libft.h>
 #include <gb.h>
-#include <create_envp_list.h>
 #include <get_next_line.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,6 +27,19 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/wait.h>
+
+typedef struct s_envp_list
+{
+	char				*id_name;
+	int					id;
+	char				*value;
+	struct s_envp_list	*next;
+
+}	t_envp_list;
+
+t_envp_list	*create_envp_list(char **envp);
+char *find_value_on_envp(t_envp_list **list, char *value_id_name);
+void update_envp_value(t_envp_list **list, char *id_name, char *new_value);
 
 char *get_user_name(t_envp_list **list);
 char *get_location(void);
