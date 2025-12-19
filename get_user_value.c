@@ -50,7 +50,7 @@ static char *get_session_name(void)
     {
 		wait(NULL);
         free(cmd);
-        pc_name = get_next_line(pipefd[1]);
+        pc_name = get_next_line(pipefd[0]);
         close(pipefd[0]);
 		close(pipefd[1]);
     }
