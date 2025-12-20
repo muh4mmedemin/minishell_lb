@@ -32,3 +32,18 @@ char  *cut_wrong_chracter(const char *s1)
     new_str[i] = '\0';
     return new_str;
 }
+
+void	clear_arr(char ***input)
+{
+	int i;
+	char **str;
+
+	str = (*input);
+	i = 0;
+	while(str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}

@@ -31,10 +31,12 @@ typedef struct s_envp_list
 	struct s_envp_list	*next;
 }	t_envp_list;
 
+char **envp_list_to_char_arr(t_envp_list *envp_list);
 t_envp_list	*create_envp_list(char **envp);
 char *find_value_on_envp(t_envp_list **list, char *value_id_name);
 void update_envp_value(t_envp_list **list, char *id_name, char *new_value);
 char  *cut_wrong_chracter(const char *s1);
+void	clear_arr(char ***input);
 
 char *get_user_name(t_envp_list **list);
 char *get_location(void);

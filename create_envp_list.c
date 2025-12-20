@@ -33,6 +33,8 @@ char	*find_value_on_envp(t_envp_list **list, char *value_id_name)
     t_envp_list *temp;
 
     temp = (*list);
+	if(temp == NULL || value_id_name == NULL)
+        return NULL;
     while(temp->next != NULL)
     {
         if(!strcmp(temp->id_name, value_id_name))
