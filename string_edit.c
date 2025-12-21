@@ -47,3 +47,15 @@ void	clear_arr(char ***input)
 	}
 	free(str);
 }
+
+int	ft_arrlen(const char **arr)
+{
+	int i;
+
+	i = 0;
+	if(arr[i] == NULL || arr == NULL)
+		return 0;
+	while(arr[i])
+		i++;
+	return i;
+}
