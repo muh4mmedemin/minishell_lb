@@ -44,10 +44,20 @@ char **envp_list_to_char_arr(t_envp_list *envp_list)
 		tmp = ft_strjoin(envp_list->id_name, "=");
 		str[i] = ft_strjoin(tmp, envp_list->value);
 		free(tmp);
-		//printf("%s\n", str[i]);
 		envp_list = envp_list->next;
 		i++;
 	}
 	return str;
-	printf("%d\n", size_envp_list);
+}
+
+void print_envp_linked_list(t_envp_list *envp_list)
+{
+	if(envp_list == NULL)
+		return ;
+	while (envp_list->next != NULL)
+	{
+		printf("%s=%s", envp_list->id_name, envp_list->value);
+		envp_list = envp_list->next;		
+	}
+	return ;
 }
