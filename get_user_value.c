@@ -28,35 +28,6 @@ char *get_user_name(t_envp_list **list)
     return (user_name);
 }
 
-static char *get_session_name(void)
-{
-    char *pc_name;
-    int pipefd[2];
-    pid_t pid;
-    char **cmd;
-
-    cmd = ft_split("hostname", ' ');
-    pipe(pipefd);
-    pid = fork();
-    if(pid == 0)
-    {
-        dup2(pipefd[1], 1);
-        close(pipefd[0]);
-        close(pipefd[1]);
-        execve("/bin/hostname", cmd, NULL);
-        exit(1);
-    }
-    else
-    {
-		wait(NULL);
-        free(cmd);
-        pc_name = get_next_line(pipefd[0]);
-        close(pipefd[0]);
-		close(pipefd[1]);
-    }
-    return pc_name;
-}
-
 char *get_pc_name(t_envp_list **list)
 {
     char *pc_name;
@@ -64,10 +35,7 @@ char *get_pc_name(t_envp_list **list)
     pc_name = find_value_on_envp(list, "NAME");
     if(pc_name == NULL)
     {
-        pc_name = get_session_name();
-        if(pc_name == NULL)
-            NULL;
-        return pc_name;
+        return NULL;
     }
     else
         return pc_name;

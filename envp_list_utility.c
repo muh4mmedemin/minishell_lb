@@ -34,7 +34,7 @@ char **envp_list_to_char_arr(t_envp_list *envp_list)
 	int i;
 	char *tmp;
 
-	i = 0;	
+	i = 0;
 	size_envp_list = size_of_envp_list(envp_list);
 	str = ft_malloc((size_envp_list + 1) * sizeof(char*), 0);
 	str[size_envp_list] = NULL;

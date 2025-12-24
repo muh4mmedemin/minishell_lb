@@ -23,6 +23,7 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
         {
             free(temp->value);
             temp->value = ft_strdup(new_value);
+			break ;
         }
         temp = temp->next;
     }
