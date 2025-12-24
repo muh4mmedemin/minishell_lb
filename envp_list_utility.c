@@ -36,14 +36,12 @@ char **envp_list_to_char_arr(t_envp_list *envp_list)
 
 	i = 0;
 	size_envp_list = size_of_envp_list(envp_list);
-	str = ft_malloc((size_envp_list + 1) * sizeof(char*), 0);
+	str = malloc((size_envp_list + 1) * sizeof(char*));
 	str[size_envp_list] = NULL;
 	while(envp_list->next != NULL)
 	{
-		str[i] = ft_malloc(ft_strlen(envp_list->id_name) + ft_strlen(envp_list->value) + 2, 0);
-		tmp = ft_strjoin(envp_list->id_name, "=");
+		tmp = sort_term_strjoin(envp_list->id_name, "=");
 		str[i] = ft_strjoin(tmp, envp_list->value);
-		free(tmp);
 		envp_list = envp_list->next;
 		i++;
 	}
