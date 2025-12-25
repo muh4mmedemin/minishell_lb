@@ -24,7 +24,7 @@ char *get_user_name(t_envp_list **list)
     user_name = find_value_on_envp(list, "USER");
     if(user_name == NULL)
         return NULL;
-    user_name = ft_strjoin(COLOR_GREEN, user_name);
+    user_name = sort_term_strjoin(COLOR_GREEN, user_name);
     return (user_name);
 }
 
@@ -48,34 +48,22 @@ char *get_location(void)
     char buf[1024];
 
     getcwd(buf, 1024);
-    location = ft_strjoin(COLOR_PURPLE, buf);
+    location = sort_term_strjoin(COLOR_PURPLE, buf);
     return (location);
 }
 
 char *rl_header(t_envp_list **list, char **envp)
 {
     char *prompt;
-	char *tmp;
 	char *location;
 
     prompt = get_user_name(list);
-	tmp = prompt;
-    prompt = ft_strjoin(prompt, "@");
-	free(tmp);
-	tmp = prompt;
-    prompt = ft_strjoin(prompt, get_pc_name(list));
-	free(tmp);
-	tmp = prompt;
-    prompt = ft_strjoin(prompt, "\033[1;37m:");
-	free(tmp);
-	tmp = prompt;
+    prompt = sort_term_strjoin(prompt, "@");
+    prompt = sort_term_strjoin(prompt, get_pc_name(list));
+    prompt = sort_term_strjoin(prompt, "\033[1;37m:");
 	location = get_location();
-    prompt = ft_strjoin(prompt, location);
-	free(location);
-	free(tmp);
-	tmp = prompt;
-    prompt = ft_strjoin(prompt, "\033[1;37m$ ");
-	free(tmp);
+    prompt = sort_term_strjoin(prompt, location);
+    prompt = sort_term_strjoin(prompt, "\033[1;37m$ ");
     (void)envp;
     return prompt;
 }
