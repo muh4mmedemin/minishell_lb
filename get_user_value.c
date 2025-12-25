@@ -35,7 +35,7 @@ char *get_pc_name(t_envp_list **list)
     pc_name = find_value_on_envp(list, "NAME");
     if(pc_name == NULL)
     {
-        return NULL;
+        return "pc";
     }
     else
         return pc_name;
@@ -56,10 +56,12 @@ char *rl_header(t_envp_list **list, char **envp)
 {
     char *prompt;
 	char *location;
+    char *pc_name;
 
+    pc_name = get_pc_name(list);
     prompt = get_user_name(list);
     prompt = sort_term_strjoin(prompt, "@");
-    prompt = sort_term_strjoin(prompt, get_pc_name(list));
+    prompt = sort_term_strjoin(prompt, pc_name);
     prompt = sort_term_strjoin(prompt, "\033[1;37m:");
 	location = get_location();
     prompt = sort_term_strjoin(prompt, location);
