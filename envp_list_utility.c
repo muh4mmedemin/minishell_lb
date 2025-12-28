@@ -54,7 +54,7 @@ void print_envp_linked_list(t_envp_list *envp_list)
 		return ;
 	while (envp_list->next != NULL)
 	{
-		printf("%s=%s", envp_list->id_name, envp_list->value);
+		printf("%s=%s\n", envp_list->id_name, envp_list->value);
 		envp_list = envp_list->next;		
 	}
 	return ;
