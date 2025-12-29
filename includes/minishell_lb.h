@@ -26,7 +26,7 @@
 typedef struct s_envp_list
 {
 	char				*id_name;
-	int					id;
+	int					isvaluempty;
 	char				*value;
 	struct s_envp_list	*next;
 }	t_envp_list;

@@ -74,7 +74,7 @@ static void	take_key_name(t_envp_list **list, char **envp)
 			tmp->id_name[b] = envp[i][b];
 			b++;
 		}
-		tmp->id = i;
+		tmp->isvaluempty = 1;
 		tmp->id_name[b] = '\0';
 		tmp->next = NULL;
 		if(envp[i + 1])
