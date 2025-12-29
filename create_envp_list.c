@@ -17,7 +17,7 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
     t_envp_list *temp;
 
     temp = (*list);
-    while(temp->next != NULL)
+    while(temp != NULL)
     {
         if(!strcmp(temp->id_name, id_name))
         {
@@ -36,14 +36,12 @@ char	*find_value_on_envp(t_envp_list **list, char *value_id_name)
     temp = (*list);
 	if(temp == NULL || value_id_name == NULL)
         return NULL;
-    while(temp->next != NULL)
+    while(temp != NULL)
     {
         if(!strcmp(temp->id_name, value_id_name))
             return temp->value; 
         temp = temp->next;
     }
-    if(temp == NULL)
-        return NULL;
     return NULL;
 }
 
@@ -83,9 +81,10 @@ static void	take_key_name(t_envp_list **list, char **envp)
 		}
 		tmp->id_name[b] = '\0';
 		tmp->id = i;
-		tmp->next = ft_malloc(sizeof(t_envp_list), 0);
-		tmp = tmp->next;
 		tmp->next = NULL;
+		if(envp[i + 1])
+			tmp->next = ft_malloc(sizeof(t_envp_list), 0);
+		tmp = tmp->next;
 		i++;
 	}
 	return ;

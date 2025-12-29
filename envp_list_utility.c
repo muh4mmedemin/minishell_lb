@@ -19,7 +19,7 @@ static int size_of_envp_list(t_envp_list *envp_list)
 	i = 0;
 	if(envp_list == NULL)
 		return 0;
-	while(envp_list->next != NULL)
+	while(envp_list != NULL)
 	{
 		envp_list = envp_list->next;
 		i++;
@@ -38,7 +38,7 @@ char **envp_list_to_char_arr(t_envp_list *envp_list)
 	size_envp_list = size_of_envp_list(envp_list);
 	str = malloc((size_envp_list + 1) * sizeof(char*));
 	str[size_envp_list] = NULL;
-	while(envp_list->next != NULL)
+	while(envp_list != NULL)
 	{
 		tmp = sort_term_strjoin(envp_list->id_name, "=");
 		str[i] = ft_strjoin(tmp, envp_list->value);
@@ -52,7 +52,7 @@ void print_envp_linked_list(t_envp_list *envp_list)
 {
 	if(envp_list == NULL)
 		return ;
-	while (envp_list->next != NULL)
+	while (envp_list != NULL)
 	{
 		printf("%s=%s\n", envp_list->id_name, envp_list->value);
 		envp_list = envp_list->next;		
