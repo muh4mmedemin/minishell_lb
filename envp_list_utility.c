@@ -12,6 +12,22 @@
 
 #include <minishell_lb.h>
 
+char	*find_value_on_envp(t_envp_list **list, char *value_id_name)
+{
+    t_envp_list *temp;
+
+    temp = (*list);
+	if(temp == NULL || value_id_name == NULL)
+        return NULL;
+    while(temp != NULL)
+    {
+        if(!strcmp(temp->id_name, value_id_name))
+            return temp->value; 
+        temp = temp->next;
+    }
+    return NULL;
+}
+
 static int size_of_envp_list(t_envp_list *envp_list)
 {
 	int	i;
