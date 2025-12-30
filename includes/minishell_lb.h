@@ -39,6 +39,7 @@ char  *cut_wrong_chracter(const char *s1);
 void	clear_arr(char ***input);
 int	ft_arrlen(const char **arr);
 void print_envp_linked_list(t_envp_list *envp_list);
+int size_of_envp_list(t_envp_list *envp_list);
 
 char *get_user_name(t_envp_list **list);
 char *get_location(void);

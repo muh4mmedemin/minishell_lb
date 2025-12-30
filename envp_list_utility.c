@@ -28,7 +28,7 @@ char	*find_value_on_envp(t_envp_list **list, char *value_id_name)
     return NULL;
 }
 
-static int size_of_envp_list(t_envp_list *envp_list)
+int size_of_envp_list(t_envp_list *envp_list)
 {
 	int	i;
 
