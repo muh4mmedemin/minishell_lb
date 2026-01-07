@@ -12,20 +12,20 @@
 
 #include <minishell_lb.h>
 
-int	isvaluein_envplist(t_envp_list **list, char *value_id_name)
+char	*find_id_name_on_envp(t_envp_list **list, char *value_id_name)
 {
-    t_envp_list *temp;
+	t_envp_list *temp;
 
     temp = (*list);
 	if(temp == NULL || value_id_name == NULL)
-        return 0;
+        return NULL;
     while(temp != NULL)
     {
         if(!strcmp(temp->id_name, value_id_name))
-           return 1;
+            return temp->id_name; 
         temp = temp->next;
     }
-    return 0;
+    return NULL;
 }
 
 char	*find_value_on_envp(t_envp_list **list, char *value_id_name)

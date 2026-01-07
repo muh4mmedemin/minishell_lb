@@ -41,11 +41,13 @@ int	ft_arrlen(const char **arr);
 void print_envp_linked_list(t_envp_list *envp_list);
 int size_of_envp_list(t_envp_list *envp_list);
 int	ft_strcmp(const char *s1, const char *s2);
-int	isvaluein_envplist(t_envp_list **list, char *value_id_name);
+char	*find_id_name_on_envp(t_envp_list **list, char *value_id_name);
 
 char *get_user_name(t_envp_list **list);
 char *get_location(void);
 char *get_pc_name(t_envp_list **list);
 char *rl_header(t_envp_list **list, char **envp);
+
+t_envp_list *find_node_address(t_envp_list **source_list, char *id_name);
 
 #endif

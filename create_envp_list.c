@@ -21,6 +21,8 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
     {
         if(!strcmp(temp->id_name, id_name))
         {
+			if(temp->value == NULL)
+				temp->isvaluempty = 0;
             free(temp->value);
             temp->value = ft_strdup(new_value);
 			break ;
