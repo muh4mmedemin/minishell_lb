@@ -25,6 +25,8 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
 				temp->isvaluempty = 0;
             free(temp->value);
             temp->value = ft_strdup(new_value);
+			if(temp->value == NULL)
+				return ;
 			break ;
         }
         temp = temp->next;
@@ -53,6 +55,8 @@ static void	take_value(t_envp_list **list, char **envp)
 	while (envp[i])
 	{
 		temp->value = ft_strdup((ft_strchr(envp[i], '=') + 1));
+		if(temp->value == NULL)
+			return ;
 		temp = temp->next;
 		i++;
 	}
@@ -70,6 +74,8 @@ static void	take_key_name(t_envp_list **list, char **envp)
 	while (envp[i])
 	{
 		tmp->id_name = ft_malloc(special_strlen(envp[i], '=') + 1, 0);
+		if(tmp->id_name == NULL)
+			return ;
 		b = 0;
 		while(envp[i][b] != '=' && envp[i][b])
 		{
@@ -81,6 +87,8 @@ static void	take_key_name(t_envp_list **list, char **envp)
 		tmp->next = NULL;
 		if(envp[i + 1])
 			tmp->next = ft_malloc(sizeof(t_envp_list), 0);
+		if(envp[i + 1] && tmp->next == NULL)
+			return ;
 		tmp = tmp->next;
 		i++;
 	}
@@ -94,6 +102,8 @@ t_envp_list	*create_envp_list(char **envp)
 	if (envp == NULL)
 		return (NULL);
 	envp_list = ft_malloc(sizeof(t_envp_list), 0);
+	if(envp_list == NULL)
+		return NULL;
 	take_key_name(&envp_list, envp);
 	take_value(&envp_list, envp);
 	return (envp_list);
