@@ -6,7 +6,7 @@
 /*   By: yademirk <yademirk@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:42:36 by muayna            #+#    #+#             */
-/*   Updated: 2025/12/30 22:24:09 by yademirk         ###   ########.fr       */
+/*   Updated: 2026/01/08 13:40:29 by yademirk         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,7 +34,7 @@ char *get_pc_name(t_envp_list **list)
 {
     char *pc_name;
 
-    pc_name = find_value_on_envp(list, "NAME");
+    pc_name = find_value_on_envp(list, "HOSTNAME");
     if(pc_name == NULL)
     {
         return "pc";
@@ -67,7 +67,7 @@ char *rl_header(t_envp_list **list, char **envp)
     prompt = sort_term_strjoin(prompt, RL_START "\033[1;37m:" RL_END);
 	location = get_location();
     prompt = sort_term_strjoin(prompt, location);
-    prompt = sort_term_strjoin(prompt, RL_START "\033[1;37m$ " RL_END);
+    prompt = sort_term_strjoin(prompt, RL_START "\033[0;37m$ " RL_END);
     (void)envp;
     return prompt;
 }
