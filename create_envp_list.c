@@ -19,7 +19,7 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
     temp = (*list);
     while(temp != NULL)
     {
-        if(!strcmp(temp->id_name, id_name))
+        if(!ft_strcmp(temp->id_name, id_name))
         {
 			if(temp->value == NULL)
 				temp->isvaluempty = 0;
