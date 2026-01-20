@@ -25,8 +25,10 @@ char *get_user_name(t_envp_list **list)
 
     user_name = find_value_on_envp(list, "USER");
     if(user_name == NULL)
-        return NULL;
+        return "user";
     user_name = sort_term_strjoin(RL_START COLOR_GREEN RL_END, user_name);
+    if(user_name == NULL)
+        return "user";
     return (user_name);
 }
 
@@ -51,6 +53,8 @@ char *get_location(void)
 
     getcwd(buf, 1024);
     location = sort_term_strjoin(RL_START COLOR_PURPLE RL_END, buf);
+    if(location == NULL)
+        return "directory";
     return (location);
 }
 
