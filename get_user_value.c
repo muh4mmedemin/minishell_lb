@@ -44,7 +44,7 @@ char *find_value_on_file(const char *path, const char *v_name, const char separa
             free(line);
         }
     }
-    return "user";
+    return ft_strdup("user");
 }
 
 int check_same_value(const char *source, const char *v_name, const char separate_character)
@@ -100,7 +100,11 @@ char *get_user_name()
     char **splited_passwd_line;
     
     uid = find_value_on_file("/proc/self/status", "Uid:", '\t');
+    if(uid == NULL)
+        return ("user");
     passwd_line = find_value_on_passwd("/etc/passwd", uid, ':');
+    if(passwd_line == NULL)
+        return ("user");
     splited_passwd_line = ft_split(passwd_line, ':');
     user_name = sort_term_strdup(splited_passwd_line[0]);
     clear_arr(&splited_passwd_line);
