@@ -38,12 +38,14 @@ char *find_value_on_file(const char *path, const char *v_name, const char separa
                 free(line);
                 line = sort_term_strdup(splited_line[1]);
                 clear_arr(&splited_line);
+                close(fd);
                 return line;
             }
             clear_arr(&splited_line);
             free(line);
         }
     }
+    close(fd);
     return ft_strdup("user");
 }
 
@@ -84,11 +86,13 @@ char *find_value_on_passwd(const char *path, const char *v_name, const char sepa
             {
                 tmp = sort_term_strdup(line);
                 free(line);
+                close(fd);
                 return tmp;
             }
             free(line);
         }
     }
+    close(fd);
     return NULL;
 }
 
@@ -121,6 +125,7 @@ char *get_pc_name()
     {
         fd = open("/etc/hostname", O_RDONLY, 0777);
         pc_name = get_next_line(fd);
+        close(fd);
         tmp = pc_name;
         pc_name = cut_wrong_chracter(pc_name);
         free(tmp);

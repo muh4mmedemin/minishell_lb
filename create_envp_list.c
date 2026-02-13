@@ -23,8 +23,7 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
         {
 			if(temp->value == NULL)
 				temp->isvaluempty = 0;
-            free(temp->value);
-            temp->value = ft_strdup(new_value);
+            temp->value = long_term_strdup(new_value);
 			if(temp->value == NULL)
 				return ;
 			break ;
@@ -54,7 +53,7 @@ static void	take_value(t_envp_list **list, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		temp->value = ft_strdup((ft_strchr(envp[i], '=') + 1));
+		temp->value = long_term_strdup((ft_strchr(envp[i], '=') + 1));
 		if(temp->value == NULL)
 			return ;
 		temp = temp->next;
