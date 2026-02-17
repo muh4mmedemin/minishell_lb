@@ -91,7 +91,11 @@ void print_envp_linked_list(t_envp_list *envp_list)
 	while (envp_list != NULL)
 	{
 		if(envp_list->isvaluempty == 0)
-			printf("%s=%s\n", envp_list->id_name, envp_list->value);
+		{
+			ft_putstr_fd(envp_list->id_name, STDOUT_FILENO);
+			ft_putstr_fd("=", STDOUT_FILENO);
+			ft_putendl_fd(envp_list->value, STDOUT_FILENO);
+		}
 		envp_list = envp_list->next;		
 	}
 	return ;
