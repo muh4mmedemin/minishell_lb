@@ -159,10 +159,10 @@ char *rl_header(t_envp_list **list, char **envp)
     prompt = get_user_name();
     prompt = sort_term_strjoin(sort_term_strjoin(RL_START COLOR_GREEN RL_END, prompt), "@");
     prompt = sort_term_strjoin(prompt, pc_name);
-    prompt = sort_term_strjoin(prompt, RL_START "\033[1;37m:" RL_END);
+    prompt = sort_term_strjoin(prompt, RL_START "\033[1;37m" RL_END ":");
 	location = get_location();
     prompt = sort_term_strjoin(prompt, location);
-    prompt = sort_term_strjoin(prompt, RL_START "\033[0;37m$ " RL_END);
+    prompt = sort_term_strjoin(prompt, RL_START "\033[0;37m" RL_END "$ ");
     (void)envp;
     return prompt;
 }
