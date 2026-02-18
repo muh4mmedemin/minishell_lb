@@ -12,35 +12,35 @@
 
 #include <minishell_lb.h>
 
-char  *cut_wrong_chracter(const char *s1)
+char	*cut_wrong_chracter(const char *s1)
 {
-    int i;
-    char *new_str;
+	int		i;
+	char	*new_str;
 
-    i = 0;
-    if (s1 == NULL || !ft_strchr(s1, '\n'))
-		return (char *)s1;
-    while (s1[i] && (s1[i] != '\n' && s1[i] != '\r'))
-        i++;
-    new_str = ft_malloc(i + 1, 0);
-    i = 0;
-    while(s1[i] && (s1[i]!= '\n' && s1[i] != '\r'))
-    {
-        new_str[i] = s1[i];
-        i++;
-    }
-    new_str[i] = '\0';
-    return new_str;
+	i = 0;
+	if (s1 == NULL || !ft_strchr(s1, '\n'))
+		return ((char *)s1);
+	while (s1[i] && (s1[i] != '\n' && s1[i] != '\r'))
+		i++;
+	new_str = ft_malloc(i + 1, 0);
+	i = 0;
+	while (s1[i] && (s1[i] != '\n' && s1[i] != '\r'))
+	{
+		new_str[i] = s1[i];
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
 }
 
 void	clear_arr(char ***input)
 {
-	int i;
-	char **str;
+	int		i;
+	char	**str;
 
 	str = (*input);
 	i = 0;
-	while(str[i] != NULL)
+	while (str[i] != NULL)
 	{
 		free(str[i]);
 		i++;
@@ -50,14 +50,14 @@ void	clear_arr(char ***input)
 
 int	ft_arrlen(const char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(arr[i] == NULL || arr == NULL)
-		return 0;
-	while(arr[i])
+	if (arr[i] == NULL || arr == NULL)
+		return (0);
+	while (arr[i])
 		i++;
-	return i;
+	return (i);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)
