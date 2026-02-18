@@ -32,18 +32,6 @@ void	update_envp_value(t_envp_list **list, char *id_name, char *new_value)
 	}
 }
 
-static int	special_strlen(char *str, char until_char)
-{
-	int	i;
-
-	if (str == NULL || until_char == '\0')
-		return (0);
-	i = 0;
-	while (str[i] && str[i] != until_char)
-		i++;
-	return (i);
-}
-
 static void	take_value(t_envp_list **list, char **envp)
 {
 	int			i;
@@ -57,38 +45,6 @@ static void	take_value(t_envp_list **list, char **envp)
 		if (temp->value == NULL)
 			return ;
 		temp = temp->next;
-		i++;
-	}
-	return ;
-}
-
-static void	take_key_name(t_envp_list **list, char **envp)
-{
-	int			i;
-	int			b;
-	t_envp_list	*tmp;
-
-	tmp = (*list);
-	i = 0;
-	while (envp[i])
-	{
-		tmp->id_name = ft_malloc(special_strlen(envp[i], '=') + 1, 0);
-		if (tmp->id_name == NULL)
-			return ;
-		b = 0;
-		while (envp[i][b] != '=' && envp[i][b])
-		{
-			tmp->id_name[b] = envp[i][b];
-			b++;
-		}
-		tmp->isvaluempty = 0;
-		tmp->id_name[b] = '\0';
-		tmp->next = NULL;
-		if (envp[i + 1])
-			tmp->next = ft_malloc(sizeof(t_envp_list), 0);
-		if (envp[i + 1] && tmp->next == NULL)
-			return ;
-		tmp = tmp->next;
 		i++;
 	}
 	return ;

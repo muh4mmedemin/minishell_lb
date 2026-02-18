@@ -52,5 +52,6 @@ char		*rl_header(t_envp_list **list, char **envp);
 t_envp_list	*find_node_address(t_envp_list **source_list, char *id_name);
 
 char		*get_user_uid(void);
+void		take_key_name(t_envp_list **list, char **envp);
 
 #endif
