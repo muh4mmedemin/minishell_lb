@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:27:07 by muayna            #+#    #+#             */
-/*   Updated: 2026/02/18 15:28:26 by muayna           ###   ########.fr       */
+/*   Updated: 2026/02/18 15:39:25 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	special_strlen(char *str, char until_char)
 	return (i);
 }
 
-static void take_key_name_for_norm(t_envp_list **list, int b)
+static void	take_key_name_for_norm(t_envp_list **list, int b)
 {
 	(*list)->isvaluempty = 0;
 	(*list)->id_name[b] = '\0';
@@ -57,4 +57,10 @@ void	take_key_name(t_envp_list **list, char **envp)
 		i++;
 	}
 	return ;
+}
+
+void	find_value_on_file_for_norm(int *fd, char **line, char *path)
+{
+	*fd = open(path, O_RDONLY, 0777);
+	*line = sort_term_strdup(" ");
 }

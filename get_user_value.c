@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_user_value.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yademirk <yademirk@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/17 15:42:36 by muayna            #+#    #+#             */
-/*   Updated: 2026/01/08 13:40:29 by yademirk         ###   ########.fr       */
+/*   Created: 2026/02/18 15:34:40 by muayna            #+#    #+#             */
+/*   Updated: 2026/02/18 15:34:40 by muayna           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include <minishell_lb.h>
 
@@ -19,15 +19,14 @@
 #define RL_START "\001"
 #define RL_END "\002"
 
-char	*find_value_on_file(const char *path,
-	const char *v_name, const char separate_character)
+char	*find_value_on_file(const char *path, const char *v_name,
+		const char separate_character)
 {
 	int		fd;
 	char	*line;
 	char	**splited_line;
 
-	fd = open(path, O_RDONLY, 0777);
-	line = sort_term_strdup(" ");
+	find_value_on_file_for_norm(&fd, &line, (char *)path);
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
@@ -50,8 +49,8 @@ char	*find_value_on_file(const char *path,
 	return (ft_strdup("user"));
 }
 
-int	check_same_value(const char *source,
-	const char *v_name, const char separate_character)
+int	check_same_value(const char *source, const char *v_name,
+		const char separate_character)
 {
 	char	**splitted_source;
 	int		i;
@@ -71,8 +70,8 @@ int	check_same_value(const char *source,
 	return (0);
 }
 
-char	*find_value_on_passwd(const char *path,
-	const char *v_name, const char separate_character)
+char	*find_value_on_passwd(const char *path, const char *v_name,
+		const char separate_character)
 {
 	int		fd;
 	char	*line;
@@ -116,39 +115,6 @@ char	*get_user_name(void)
 	user_name = sort_term_strdup(splited_passwd_line[0]);
 	clear_arr(&splited_passwd_line);
 	return (user_name);
-}
-
-char	*get_pc_name(void)
-{
-	int			fd;
-	static char	*pc_name;
-	char		*tmp;
-
-	if (pc_name == NULL)
-	{
-		fd = open("/etc/hostname", O_RDONLY, 0777);
-		pc_name = get_next_line(fd);
-		close(fd);
-		tmp = pc_name;
-		pc_name = cut_wrong_chracter(pc_name);
-		free(tmp);
-		return (pc_name);
-	}
-	else
-		return (pc_name);
-	return ("pc");
-}
-
-char	*get_location(void)
-{
-	char	*location;
-	char	buf[1024];
-
-	getcwd(buf, 1024);
-	location = sort_term_strjoin(RL_START COLOR_PURPLE RL_END, buf);
-	if (location == NULL)
-		return ("directory");
-	return (location);
 }
 
 char	*rl_header(t_envp_list **list, char **envp)
