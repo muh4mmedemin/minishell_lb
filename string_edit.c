@@ -38,6 +38,8 @@ void	clear_arr(char ***input)
 	int		i;
 	char	**str;
 
+	if ((*input) == NULL || input == NULL)
+		return ;
 	str = (*input);
 	i = 0;
 	while (str[i] != NULL)

@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:37:37 by muayna            #+#    #+#             */
-/*   Updated: 2026/02/18 15:39:03 by muayna           ###   ########.fr       */
+/*   Updated: 2026/02/23 01:08:38 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,18 @@ char	*get_location(void)
 {
 	char	*location;
 	char	buf[1024];
+	char	*check_getcwd;
 
-	getcwd(buf, 1024);
+	check_getcwd = getcwd(NULL, 1024);
+	if (check_getcwd == NULL)
+		return (NULL);
+	else
+	{
+		free(check_getcwd);
+		getcwd(buf, 1024);
+	}
 	location = sort_term_strjoin(RL_START COLOR_PURPLE RL_END, buf);
 	if (location == NULL)
-		return ("directory");
+		return (NULL);
 	return (location);
 }

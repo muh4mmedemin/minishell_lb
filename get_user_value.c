@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_user_value.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2026/02/18 15:34:40 by muayna            #+#    #+#             */
 /*   Updated: 2026/02/18 15:34:40 by muayna           ###   ########.fr       */
 /*                                                                            */
@@ -131,6 +134,8 @@ char	*rl_header(t_envp_list **list, char **envp)
 	prompt = sort_term_strjoin(prompt, pc_name);
 	prompt = sort_term_strjoin(prompt, RL_START "\033[1;37m" RL_END ":");
 	location = get_location();
+	if (location == NULL)
+		location = sort_term_strdup("Zombie Directory");
 	prompt = sort_term_strjoin(prompt, location);
 	prompt = sort_term_strjoin(prompt, RL_START "\033[0;37m" RL_END "$ ");
 	(void)envp;
